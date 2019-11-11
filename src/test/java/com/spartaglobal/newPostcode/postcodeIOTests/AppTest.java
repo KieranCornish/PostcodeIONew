@@ -2,6 +2,9 @@ package com.spartaglobal.newPostcode.postcodeIOTests;
 
 import static org.junit.Assert.assertTrue;
 
+import com.spartaglobal.newPostcode.postcodeIOTestingServies.MultiPC.MPCHTTPManagment.MPCHTTPCallManager;
+import com.spartaglobal.newPostcode.postcodeIOTestingServies.MultiPC.MPCJsonGenerator.MPCJsonGenerator;
+import com.spartaglobal.newPostcode.postcodeIOTestingServies.MultiPC.MPCService;
 import com.spartaglobal.newPostcode.postcodeIOTestingServies.SinglePC.SPCHTTPManager.SPCHTTPCallManager;
 import com.spartaglobal.newPostcode.postcodeIOTestingServies.SinglePC.SPCHTTPManager.SPCHTTPResponseManager;
 import com.spartaglobal.newPostcode.postcodeIOTestingServies.SinglePC.SPCService;
@@ -16,7 +19,9 @@ public class AppTest
 {
 //    private static SPCHTTPCallManager SPCHTTPCallManager;
 //    private static SPCHTTPResponseManager SPCHTTPResponseManager;
-    private static SPCService spcService;
+    private static MPCService mpcService;
+
+
 
 //    @BeforeClass
 //    public static void setup(){
@@ -31,13 +36,16 @@ public class AppTest
 //    }
     @BeforeClass
     public static void setup(){
-        spcService = new SPCService();
-        spcService.executeSinglePostcodeCall("cm131hx");
+        mpcService = new MPCService();
+        mpcService.executeMPCPostRequest("SE12 0nb, TS12  3dg");
+
     }
 
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        Assert.assertEquals(200, spcService.getParsedJSONResponse().getStatus());
+    public void shouldAnswerWithTrue() {
+//        Assert.assertEquals(200, spcService.getParsedJSONResponse().getStatus());
+//        mpcJsonGenerator.createMPCJsonQuery("SE12 0nb, TS12  3dg");
+        System.out.println(mpcService.getParsedJSONResponse().getStatus());
+        System.out.println(mpcService.getParsedJSONResponse().getResult().get(1));
     }
 }
